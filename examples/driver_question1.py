@@ -42,10 +42,9 @@ def main():
 
     # iv.)
     # 0-th Order Taylor Series (this term does not account for uncertainty/floating point error)
-    H_0 = 4 * np.pi * R ** 2 * e * sigma * T ** 4
+    H_bar = 4 * np.pi * R ** 2 * e * sigma * T ** 4
     # The expected value of the heat energy H for the first order Taylor Series:
-    H_1 = H_0 + del_H
-    print(f"The expected value of heat energy (W): {H_1:0.5e}")
+    print(f"The expected value of heat energy (W): {H_bar:0.5e}")
 
     # v.)  Th total error in H
     print(f"The total error in heat energy (H): {del_H:0.5e}\n")
@@ -54,7 +53,7 @@ def main():
     print(f"Error contribution from average Temperature (T): {contr_T:0.5e}\n")
 
     # vi. Relative error in H (use 1st order Tayler Series Sum as best approximation)
-    rel_H = np.abs((H_1 - H_0) / H_1)
+    rel_H = np.abs((del_H) / H_bar)
     print(f"The relative error in H: {rel_H:0.5e}")
 
 

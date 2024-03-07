@@ -21,28 +21,25 @@ def main():
     tf = 20.0
 
     # create list of data
-    t = np.linspace(t0, tf, num = 100)
-    vt = v(t)
-
-    # set stepsizes of 1 and 2 s
-    steps = [1, 2]
-
-    # initialize lists for integrals for different stepsizes
-    int_trap = []
-    int_simp = []
+    t1 = np.linspace(t0, tf, num = 21)
+    # print(f"t1: {t1}")
+    t2 = np.linspace(t0, tf, num = 11)
+    # print(f"t2: {t2}")
+    vt1 = v(t1)
+    vt2 = v(t2)
 
     # integrate equation 3 (2.a and b)
-    for step in steps:
-        Itrap = integrate_newton(t[::step], vt[::step], alg= "trap")
-        Isimp = integrate_newton(t[::step], vt[::step], alg= "simp")
-        int_trap.append(Itrap)
-        int_simp.append(Isimp)
-    
-    print(f"Integral Approximation using trapezoid rule with a stepsize of 1s: {int_trap[0]}")
-    print(f"Integral Approximation using trapezoid rule with a stepsize of 2s: {int_trap[1]}\n")
+    Itrap1 = integrate_newton(t1, vt1, alg= "trap")
+    Itrap2 = integrate_newton(t2, vt2, alg= "trap")
+    Isimp1 = integrate_newton(t1, vt1, alg= "simp")
+    Isimp2 = integrate_newton(t2, vt2, alg= "simp")
 
-    print(f"Integral Approximation using simpson's rule with a stepsize of 1s: {int_simp[0]}")
-    print(f"Integral Approximation using simpson's rule with a stepsize of 2s: {int_simp[1]}\n")
+    
+    print(f"Integral Approximation using trapezoid rule with a stepsize of 1s: {Itrap1}")
+    print(f"Integral Approximation using trapezoid rule with a stepsize of 2s: {Itrap2}\n")
+
+    print(f"Integral Approximation using simpson's rule with a stepsize of 1s: {Isimp1}")
+    print(f"Integral Approximation using simpson's rule with a stepsize of 2s: {Isimp2}\n")
 
     # Question 2.c) Integrate Results using 5-point Gauss-Legendre
     Igauss = integrate_gauss(v, lims = [0.0, 20.0], npts = 5)
